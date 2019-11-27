@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>editor-paciente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header class="ion-text-center">
+      {{ action }} Paciente
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+          <form [formGroup] ='forma' >
+        <ion-row>
+            
+            <ion-col size="6">
+                <ion-item>
+                    <ion-label position="stacked">Nombre</ion-label>
+                    <ion-input formControlName='nombre'></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    
+                    <ion-label position="stacked">Apellido</ion-label>
+                    <ion-input formControlName='apellido'></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    
+                    <ion-label position="stacked">Telefono</ion-label>
+                    <ion-input formControlName='telefono'></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    
+                    <ion-label position="stacked">RUC</ion-label>
+                    <ion-input formControlName='ruc'></ion-input>
+                  </ion-item>
+            </ion-col>
+            
+            <ion-col size="12">
+                <ion-item>
+                    
+                    <ion-label position="stacked">Correo electrónico</ion-label>
+                    <ion-input formControlName='email' type="email" inputmode="email"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    
+                    <ion-label position="stacked">Cédula</ion-label>
+                    <ion-input  formControlName='cedula' type="number"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    
+                    <ion-label position="stacked">Nacimiento</ion-label>
+                    <ion-datetime displayFormat="YYYY-MM-DD" (ionChange)="dateChange($event)" ></ion-datetime>
+                  </ion-item>
+            </ion-col>
+         
+        </ion-row>
+      </form>
+        <ion-row>
+          <ion-col>
+              <ion-item class="login-enter" lines="none">
+                  <ion-label color="primary" class  >{{action}}</ion-label>
+                  <ion-fab-button [disabled]="!forma.valid" slot="end" (click)="submit()" >
+                          <ion-icon name="arrow-dropright"></ion-icon>
+                  </ion-fab-button>
+                </ion-item>
+          </ion-col>
+        </ion-row>
+      
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

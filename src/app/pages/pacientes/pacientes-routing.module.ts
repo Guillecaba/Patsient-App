@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'editor-paciente',
+    loadChildren: () => import('./editor-paciente/editor-paciente.module').then( m => m.EditorPacientePageModule)
   }
 ];
 

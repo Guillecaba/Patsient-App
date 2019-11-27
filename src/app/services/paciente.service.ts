@@ -24,4 +24,38 @@ export class PacienteService {
     console.log(url)
     return this.http.get(url)
   }
+
+
+  public post(data) {
+    const body = JSON.stringify(data);
+    let url = this.URL + "persona"
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+  
+    });
+  
+    return this.http.post(url, data, { headers })
+  }
+  
+  public put(data) {
+    const body = JSON.stringify(data);
+    let url = this.URL + "persona/"
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+  
+    });
+  
+    return this.http.put(url, data, { headers })
+  }
+  
+  public delete(id) {
+    let url = this.URL + "persona/" + id
+    return this.http.delete(url)
+  }
+  
+
+
+
+
 }
+

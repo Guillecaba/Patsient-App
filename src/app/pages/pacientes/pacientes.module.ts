@@ -8,6 +8,7 @@ import { PacientesPageRoutingModule } from './pacientes-routing.module';
 
 import { PacientesPage } from './pacientes.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
