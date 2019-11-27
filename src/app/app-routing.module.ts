@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './services/auth.guard'
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'pacientes',
     pathMatch: 'full'
   },
   {
@@ -21,11 +23,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+   
   },
   {
     path: 'pacientes',
-    loadChildren: () => import('./pages/pacientes/pacientes.module').then( m => m.PacientesPageModule)
+    loadChildren: () => import('./pages/pacientes/pacientes.module').then( m => m.PacientesPageModule),
+    canActivate: [AuthGuard] 
   }
 ];
 
