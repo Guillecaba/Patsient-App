@@ -7,7 +7,7 @@ import { JsonPipe } from '@angular/common';
     providedIn: 'root'
 })
 export class AgendaService {
-    private baseUrl = 'http://gy7228.myfoscam.org:8080/stock-pwfe';
+    private baseUrl = 'http://gy7228.myfoscam.org:8080/stock-pwfe/';
     // idCliente: number;
     idProfesional: number;
     fecha: string;

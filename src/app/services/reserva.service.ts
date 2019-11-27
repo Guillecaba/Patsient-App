@@ -6,7 +6,7 @@ import { JsonPipe } from '@angular/common';
     providedIn: 'root'
 })
 export class ReservaService {
-    private baseUrl = 'http://gy7228.myfoscam.org:8080/stock-pwfe';
+    private baseUrl = 'http://gy7228.myfoscam.org:8080/stock-pwfe/';
     idCliente: number;
     idProfesional: number;
     fechaInicio: string;
