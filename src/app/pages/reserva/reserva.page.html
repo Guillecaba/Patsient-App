@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reserva</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Reservas</ion-title>
   </ion-toolbar>
   <ion-item>
     <ion-label>Profesional</ion-label>
@@ -51,5 +54,11 @@
       </ion-buttons>
     </ion-card-content>
   </ion-card>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button (click)="crear()" color="success">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

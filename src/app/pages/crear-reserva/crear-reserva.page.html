@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear Reserva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Profesional</ion-label>
+    <ion-select [(ngModel)]="emple" placeholder="Elige un profesional" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="null">Cualquier Empleado</ion-select-option>
+      <ion-select-option *ngFor="let pro of empleados" value="{{pro.idPersona}}">{{pro.nombreCompleto}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Paciente</ion-label>
+    <ion-select [(ngModel)]="pacie" placeholder="Elige un paciente" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="null">Cualquier Paciente</ion-select-option>
+      <ion-select-option *ngFor="let pac of pacientes" value="{{pac.idPersona}}">{{pac.nombreCompleto}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-datetime [(ngModel)]="fecha" displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY"
+        placeholder="Fecha de inicio" min="2018" max="2021"></ion-datetime>
+  </ion-item>
+</ion-content>

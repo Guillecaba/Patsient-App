@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ReservaPageRoutingModule } from './reserva-routing.module';
-
+import { RouterModule } from '@angular/router';
 import { ReservaPage } from './reserva.page';
 
 @NgModule({
@@ -13,7 +13,13 @@ import { ReservaPage } from './reserva.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ReservaPageRoutingModule
+    ReservaPageRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: ReservaPage
+      }
+    ])
   ],
   declarations: [ReservaPage]
 })

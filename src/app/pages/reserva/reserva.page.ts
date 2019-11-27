@@ -3,6 +3,7 @@ import { ReservaService } from 'src/app/services/reserva.service';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reserva',
@@ -30,7 +31,8 @@ export class ReservaPage implements OnInit {
     public reservaService: ReservaService,
     public pacienteService: PacienteService,
     public categoriaService: CategoriaService,
-    public datePipe: DatePipe
+    public datePipe: DatePipe,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -67,6 +69,9 @@ export class ReservaPage implements OnInit {
     this.reservaService.getReservas(fInicio, fFinal, this.pacie, this.emple).subscribe((res: any) => {
       this.reservas = res.lista;
     });
+  }
+  crear() {
+    this.router.navigateByUrl('/crear-reserva');
   }
 
 }
