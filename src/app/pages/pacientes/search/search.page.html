@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>Pacientes</ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar (ionInput)="searchByName($event)" ></ion-searchbar>
+    <ion-item>
+      <ion-icon name="funnel" class="ion-padding-start"></ion-icon>
+      <ion-label class="ion-padding-start">Filtros</ion-label>
+    </ion-item>
+    <ion-item class="ion-padding-start">
+      <ion-label>Solo Fisioterapeutas</ion-label>
+      <ion-toggle  [(ngModel)]="usuarioSistema" (ionChange)="toggleFisio($event)" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item class="ion-padding-start">
+        <ion-label>Busqueda exacta</ion-label>
+        <ion-toggle [(ngModel)]="busquedaExacta" (ionChange)="toggleExacta($event)" color="secondary"></ion-toggle>
+      </ion-item>
+
+      <ion-grid>
+          <ion-row>
+              <ion-col *ngFor="let paciente of pacientes" size="6" no padding>
+                <ion-card (click)="presentActionSheet()" >
+                  <ion-card-header>
+                    {{ paciente.nombreCompleto | slice:0:15 }}
+                    
+                  </ion-card-header>
+                  <ion-card-content class="fixline"></ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+</ion-content>

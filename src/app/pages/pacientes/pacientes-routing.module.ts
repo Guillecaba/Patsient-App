@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PacientesPage
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   }
 ];
 
