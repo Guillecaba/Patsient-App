@@ -19,6 +19,8 @@ export class CrearReservaPage implements OnInit {
   agendas;
   pacientes;
   empleados;
+  // turno elegido de la agenda
+  elegido;
   constructor(
     public reservaService: ReservaService,
     public pacienteService: PacienteService,
@@ -41,10 +43,24 @@ export class CrearReservaPage implements OnInit {
   }
 
   buscarAgenda() {
-    this.agendaService.getReservas(this.emple, this.fecha, true).subscribe((res: any) => {
+    const fechaCadena = this.datePipe.transform(this.fecha, 'yyyyMMdd');
+    console.log(this.elegido);
+    this.agendaService.getReservas(this.emple, fechaCadena, true).subscribe((res: any) => {
       this.agendas = res;
-      console.log(res);
+      console.log(this.agendas);
     });
+  }
+  actualizarAgenda() {
+    console.log('PING!!');
+    this.elegido = null;
+    if (this.emple && this.fecha) {
+      console.log('Debo buscar en mi agenda');
+      this.buscarAgenda();
+    }
+  }
+
+  postReserva() {
+
   }
 
 }

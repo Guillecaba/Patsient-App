@@ -10,7 +10,8 @@
 <ion-content>
   <ion-item>
     <ion-label>Profesional</ion-label>
-    <ion-select [(ngModel)]="emple" placeholder="Elige un profesional" okText="Aceptar" cancelText="Cancelar">
+    <ion-select (ionChange)="actualizarAgenda()" [(ngModel)]="emple" placeholder="Elige un profesional" okText="Aceptar"
+      cancelText="Cancelar">
       <ion-select-option *ngFor="let pro of empleados" value="{{pro.idPersona}}">{{pro.nombreCompleto}}
       </ion-select-option>
     </ion-select>
@@ -24,9 +25,31 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label>Fecha</ion-label>
-    <ion-datetime [(ngModel)]="fecha" displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY"
-        placeholder="Fecha de inicio" min="2018" max="2021"></ion-datetime>
+    <ion-label>Fecha de reserva</ion-label>
+    <ion-datetime (ionChange)="actualizarAgenda()" [(ngModel)]="fecha" displayFormat="YYYY-MM-DD"
+      pickerFormat="DD MMMM YYYY" placeholder="Fecha de inicio" min="2018" max="2021" doneText="Aceptar"
+      cancelText="Cancelar"></ion-datetime>
   </ion-item>
-  <ion-button *ngIf="emple && fecha" (click)="buscarAgenda()" expand="full" color="success">Buscar</ion-button>
+  <!--<ion-button [disabled]="!emple || !fecha" (click)="buscarAgenda()" expand="full" color="success">Ver agenda
+  </ion-button>-->
+
+  <ion-item *ngIf="emple && fecha">
+    <ion-label>Turnos</ion-label>
+    <ion-select [(ngModel)]="elegido" placeholder="Elige un turno" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option *ngFor="let age of agendas" [value]="age">De
+        {{age.horaInicioCadena.substr(0,2)}}:{{age.horaInicioCadena.substr(2,2)}} a
+        {{age.horaFinCadena.substr(0,2)}}:{{age.horaFinCadena.substr(2,2)}} hs.
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-text *ngIf="!emple || !fecha">
+    <h6 class="aviso">Seleccione un profesional y una fecha para ver los turnos disponibles
+      de su agenda</h6>
+  </ion-text>
+
+  <ion-fab horizontal="center" vertical="bottom" slot="fixed">
+    <ion-fab-button [disabled]="!emple || !fecha || !pacie || !elegido" (click)="postReserva()" color="success">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
