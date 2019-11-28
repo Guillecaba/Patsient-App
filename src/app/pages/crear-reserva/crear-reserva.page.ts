@@ -60,7 +60,40 @@ export class CrearReservaPage implements OnInit {
   }
 
   postReserva() {
+    // convierte la fecha en el formato fechaCadena yyyyMMdd
+    const fechaCadena = this.datePipe.transform(this.fecha, 'yyyyMMdd');
+    let datos = '{"fechaCadena": "';
+    datos = datos + fechaCadena + '","horaInicioCadena":"';
+    // extrae la hora en forma de cadena sin importar si usa datetime o time
+    let horaInicio = this.elegido.horaInicio;
+    if (horaInicio.length === 19) {
+      horaInicio = horaInicio.substr(11, 2) + horaInicio.substr(14, 2);
+    } else if (horaInicio.length === 8) {
+      horaInicio = horaInicio.substr(0, 2) + horaInicio.substr(3, 2);
+    } else {
+      console.log('Error en el formato de fecha de la entrada (fecha inicial)');
+    }
+    console.log(horaInicio);
 
+    // extrae la hora en forma de cadena sin importar si usa datetime o time
+    let horaFin = this.elegido.horaFin;
+    if (horaFin.length === 19) {
+      horaFin = horaFin.substr(11, 2) + horaFin.substr(14, 2);
+    } else if (horaFin.length === 8) {
+      horaFin = horaFin.substr(0, 2) + horaFin.substr(3, 2);
+    } else {
+      console.log('Error en el formato de fecha de la entrada (fecha final)');
+    }
+    console.log(horaFin);
+    datos = datos + horaInicio + '","horaFinCadena":"' + horaFin + '",';
+    datos = datos + '"idEmpleado":{"idPersona":' + this.emple + '},"idCliente":{"idPersona":';
+    datos = datos + this.pacie + '}}';
+    this.reservaService.postReserva(datos).subscribe(res => {
+      if (res) {
+        console.log('Reservación creada con éxito!');
+        this.router.navigateByUrl('/reserva');
+      }
+    });
   }
 
 }
