@@ -14,17 +14,17 @@ export class AppComponent {
     {
       title: 'Pacientes',
       url: '/pacientes',
-      icon: 'home'
+      icon: 'contact'
     },
     {
       title: 'Reserva',
       url: '/home',
-      icon: 'home'
+      icon: 'bookmark'
     },
     {
       title: 'Ficha',
       url: '/list',
-      icon: 'list'
+      icon: 'document'
     }
   ];
 

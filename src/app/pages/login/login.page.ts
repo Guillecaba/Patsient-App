@@ -16,6 +16,15 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  login_directo(){
+    localStorage.setItem('logged', 'true');
+    if (this.returnURL == null) {
+      this.router.navigate(['pacientes']);
+  } else {
+      this.router.navigate([this.returnURL]);
+  }
+  }
+
   login() {
     this.authService.login(this.username).subscribe(res => {
         const coincidencias = res['totalDatos'];

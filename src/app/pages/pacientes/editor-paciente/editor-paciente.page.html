@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-    <ion-title>Pacientes</ion-title>
+    <ion-title class="ion-text-center">Pacientes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
-    <ion-card-header class="ion-text-center">
+    <ion-card-header class="ion-text-center editor-title" >
       {{ action }} Paciente
     </ion-card-header>
     <ion-card-content>
@@ -72,13 +72,13 @@
         <ion-row>
           <ion-col>
               <ion-item class="login-enter" lines="none" *ngIf="action =='Nuevo'">
-                  <ion-label color="primary" class  >{{action}}</ion-label>
+                  <ion-label color="primary" class="editor-submit-title"  >Guardar</ion-label>
                   <ion-fab-button [disabled]="!forma.valid" slot="end" (click)="submit()" >
                           <ion-icon name="arrow-dropright"></ion-icon>
                   </ion-fab-button>
                 </ion-item>
                 <ion-item class="login-enter" lines="none" *ngIf="action =='Editar'">
-                    <ion-label color="primary" class  >{{action}}</ion-label>
+                    <ion-label color="primary" class="editor-submit-title"  >{{action}}</ion-label>
                     <ion-fab-button [disabled]="!forma.valid" slot="end" (click)="submit()" >
                             <ion-icon name="arrow-dropright"></ion-icon>
                     </ion-fab-button>
