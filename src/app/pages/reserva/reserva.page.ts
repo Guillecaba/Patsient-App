@@ -4,6 +4,7 @@ import { CategoriaService } from 'src/app/services/categoria.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { PopoverController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reserva',
@@ -23,6 +24,8 @@ export class ReservaPage implements OnInit {
   fIni = null;
   fFin = null;
 
+  errorMsg: string = null;
+
   mes = [
     'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
     'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
@@ -32,6 +35,8 @@ export class ReservaPage implements OnInit {
     public pacienteService: PacienteService,
     public categoriaService: CategoriaService,
     public datePipe: DatePipe,
+    public popoverController: PopoverController,
+    public alertCtrl: AlertController,
     private router: Router
   ) { }
 
@@ -73,5 +78,35 @@ export class ReservaPage implements OnInit {
   crear() {
     this.router.navigateByUrl('/crear-reserva');
   }
+
+  async eliminar(objReserva) {
+    let alert = await this.alertCtrl.create({
+      header: 'Cancelar Reserva',
+      message: '¿Estas seguro de que deseas cancelar la reserva de ' + objReserva.idCliente.nombreCompleto
+        + ' con ' + objReserva.idEmpleado.nombreCompleto + '?',
+      buttons: [
+        {
+          text: 'Salir',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('ño');
+          }
+        }, {
+          text: 'Cancelar Reserva',
+          handler: () => {
+            console.log(objReserva.idReserva);
+            this.reservaService.deleteReserva(objReserva.idReserva).subscribe(() => {
+              this.buscar();
+            }, (error) => {
+              console.log('ERROR en la eliminación: ' + error.error);
+            });
+          }
+        }
+      ],
+    });
+    await alert.present();
+  }
+
 
 }

@@ -50,7 +50,8 @@
       {{reserva.horaFin.substr(0,5)}}
       <ion-buttons>
         <ion-button color="primary">Modificar</ion-button>
-        <ion-button color="danger">Cancelar</ion-button>
+
+        <ion-button color="danger" (click)="eliminar(reserva)">Cancelar</ion-button>
       </ion-buttons>
     </ion-card-content>
   </ion-card>
