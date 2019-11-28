@@ -4,7 +4,7 @@ import { CategoriaService } from 'src/app/services/categoria.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { PopoverController, AlertController } from '@ionic/angular';
+import { PopoverController, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reserva',
@@ -37,6 +37,7 @@ export class ReservaPage implements OnInit {
     public datePipe: DatePipe,
     public popoverController: PopoverController,
     public alertCtrl: AlertController,
+    public toastController: ToastController,
     private router: Router
   ) { }
 
@@ -80,7 +81,7 @@ export class ReservaPage implements OnInit {
   }
 
   async eliminar(objReserva) {
-    let alert = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       header: 'Cancelar Reserva',
       message: '¿Estas seguro de que deseas cancelar la reserva de ' + objReserva.idCliente.nombreCompleto
         + ' con ' + objReserva.idEmpleado.nombreCompleto + '?',
@@ -100,6 +101,7 @@ export class ReservaPage implements OnInit {
               this.buscar();
             }, (error) => {
               console.log('ERROR en la eliminación: ' + error.error);
+              this.presentToast('ERROR en la eliminación: ' + error.error);
             });
           }
         }
@@ -108,5 +110,12 @@ export class ReservaPage implements OnInit {
     await alert.present();
   }
 
+  async presentToast(mensaje) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 3500
+    });
+    toast.present();
+  }
 
 }
