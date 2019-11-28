@@ -17,7 +17,11 @@ const routes: Routes = [
   },
   {
     path: 'test',
-    loadChildren: () => import('./pages/test/test.module').then( m => m.TestPageModule)
+    loadChildren: () => import('./pages/test/test.module').then(m => m.TestPageModule)
+  },
+  {
+    path: 'archivo',
+    loadChildren: () => import('./pages/archivo/archivo.module').then(m => m.ArchivoPageModule)
   }
 ];
 
@@ -27,4 +31,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

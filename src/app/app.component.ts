@@ -20,7 +20,12 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
-    }
+    },
+    {
+      title: 'Añadir archivo',
+      url: '/archivo',
+      icon: 'list'
+    },
   ];
 
   constructor(
