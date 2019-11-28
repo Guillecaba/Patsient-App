@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
+
 
 @Component({
   selector: 'app-pacientes',
@@ -20,10 +22,10 @@ export class PacientesPage implements OnInit {
   private orderBy = null;
   private orderDir = null;
 
-  constructor(public pacienteService :PacienteService, public actionSheetController: ActionSheetController) { }
+  constructor(public pacienteService :PacienteService, public actionSheetController: ActionSheetController,public router: Router) { }
 
   ngOnInit() {
-    this.getData()
+    this.getData();
       
     }
     getData(){
@@ -87,19 +89,34 @@ export class PacientesPage implements OnInit {
       this.getData()
     }
 
-    async presentActionSheet() {
+    
+
+    async presentActionSheet(paciente) {
+      console.log(paciente)
       const actionSheet = await this.actionSheetController.create({
         /* header: 'Albums', */
         buttons: [{
           text: 'Ver detalle',
           icon: 'eye',
           handler: () => {
+            let navigationExtras: NavigationExtras = {
+              state: {
+                paciente: paciente
+              }
+            };
+            this.router.navigate(['/pacientes/detail-paciente'],navigationExtras)
             console.log('Ver clicked');
           }
         }, {
           text: 'Editar',
           icon: 'create',
           handler: () => {
+            let navigationExtras: NavigationExtras = {
+              state: {
+                paciente: paciente
+              }
+            };
+            this.router.navigate(['/pacientes/editor-paciente'],navigationExtras)
             console.log('Editar clicked');
           }
         },{
@@ -107,6 +124,10 @@ export class PacientesPage implements OnInit {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
+            this.pacienteService.delete(paciente['idPersona']).subscribe(()=>{
+              this.getData();
+            })
+           
             console.log('Delete clicked');
           }
         }, {

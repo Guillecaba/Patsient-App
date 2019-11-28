@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'editor-paciente',
     loadChildren: () => import('./editor-paciente/editor-paciente.module').then( m => m.EditorPacientePageModule)
+  },
+  {
+    path: 'detail-paciente',
+    loadChildren: () => import('./detail-paciente/detail-paciente.module').then( m => m.DetailPacientePageModule)
   }
 ];
 

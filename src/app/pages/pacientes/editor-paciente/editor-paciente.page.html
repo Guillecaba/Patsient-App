@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-    <ion-title>editor-paciente</ion-title>
+    <ion-title>Pacientes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -59,11 +59,11 @@
                     <ion-input  formControlName='cedula' type="number"></ion-input>
                   </ion-item>
             </ion-col>
-            <ion-col size="6">
-                <ion-item>
+            <ion-col size="6" *ngIf="action =='Nuevo'">
+                <ion-item >
                     
                     <ion-label position="stacked">Nacimiento</ion-label>
-                    <ion-datetime displayFormat="YYYY-MM-DD" (ionChange)="dateChange($event)" ></ion-datetime>
+                    <ion-datetime displayFormat="YYYY-MM-DD" formControlName="fechaNacimiento" (ionChange)="dateChange($event)" ></ion-datetime>
                   </ion-item>
             </ion-col>
          
@@ -71,12 +71,18 @@
       </form>
         <ion-row>
           <ion-col>
-              <ion-item class="login-enter" lines="none">
+              <ion-item class="login-enter" lines="none" *ngIf="action =='Nuevo'">
                   <ion-label color="primary" class  >{{action}}</ion-label>
                   <ion-fab-button [disabled]="!forma.valid" slot="end" (click)="submit()" >
                           <ion-icon name="arrow-dropright"></ion-icon>
                   </ion-fab-button>
                 </ion-item>
+                <ion-item class="login-enter" lines="none" *ngIf="action =='Editar'">
+                    <ion-label color="primary" class  >{{action}}</ion-label>
+                    <ion-fab-button [disabled]="!forma.valid" slot="end" (click)="submit()" >
+                            <ion-icon name="arrow-dropright"></ion-icon>
+                    </ion-fab-button>
+                  </ion-item>
           </ion-col>
         </ion-row>
       
