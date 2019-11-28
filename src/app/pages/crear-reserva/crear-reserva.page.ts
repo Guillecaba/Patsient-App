@@ -16,6 +16,7 @@ export class CrearReservaPage implements OnInit {
   emple;
   fecha;
 
+  agendas;
   pacientes;
   empleados;
   constructor(
@@ -37,6 +38,13 @@ export class CrearReservaPage implements OnInit {
     hoy = new Date().toJSON('yyyy/MM/dd').substr(0, 10);
     hoy = hoy.substr(0, 4) + hoy.substr(5, 2) + hoy.substr(8, 2);
     console.log(hoy);
+  }
+
+  buscarAgenda() {
+    this.agendaService.getReservas(this.emple, this.fecha, true).subscribe((res: any) => {
+      this.agendas = res;
+      console.log(res);
+    });
   }
 
 }

@@ -11,7 +11,6 @@
   <ion-item>
     <ion-label>Profesional</ion-label>
     <ion-select [(ngModel)]="emple" placeholder="Elige un profesional" okText="Aceptar" cancelText="Cancelar">
-      <ion-select-option value="null">Cualquier Empleado</ion-select-option>
       <ion-select-option *ngFor="let pro of empleados" value="{{pro.idPersona}}">{{pro.nombreCompleto}}
       </ion-select-option>
     </ion-select>
@@ -29,4 +28,5 @@
     <ion-datetime [(ngModel)]="fecha" displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY"
         placeholder="Fecha de inicio" min="2018" max="2021"></ion-datetime>
   </ion-item>
+  <ion-button *ngIf="emple && fecha" (click)="buscarAgenda()" expand="full" color="success">Buscar</ion-button>
 </ion-content>
