@@ -7,8 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { ReservaPageRoutingModule } from './reserva-routing.module';
 import { RouterModule } from '@angular/router';
 import { ReservaPage } from './reserva.page';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @NgModule({
+  entryComponents: [ModalComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,6 +23,6 @@ import { ReservaPage } from './reserva.page';
       }
     ])
   ],
-  declarations: [ReservaPage]
+  declarations: [ReservaPage, ModalComponent]
 })
-export class ReservaPageModule {}
+export class ReservaPageModule { }

@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DatePipe } from '@angular/common';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @NgModule({
   declarations: [AppComponent],

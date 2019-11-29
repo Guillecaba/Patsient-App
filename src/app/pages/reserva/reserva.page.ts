@@ -5,6 +5,7 @@ import { PacienteService } from 'src/app/services/paciente.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { PopoverController, AlertController, ToastController } from '@ionic/angular';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-reserva',
@@ -78,6 +79,15 @@ export class ReservaPage implements OnInit {
   }
   crear() {
     this.router.navigateByUrl('/crear-reserva');
+  }
+
+  async modificar(objReserva) {
+
+    let popover = await this.popoverController.create({
+      component: ModalComponent,
+      componentProps: { reserva: objReserva },
+    });
+    return popover.present();
   }
 
   async eliminar(objReserva) {
