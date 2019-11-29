@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
 import { Ficha } from 'src/app/models/ficha';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ficha',
@@ -37,7 +39,11 @@ export class FichaPage implements OnInit {
     fechaHastaCadena:null,
   }
 
-  constructor(private service:FichaService) { }
+  constructor(
+    private service:FichaService,
+    private alert:AlertController,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     this.getData()
@@ -64,6 +70,44 @@ export class FichaPage implements OnInit {
     this.service.subcategorias(value).subscribe((response)=>{
       this.opciones.subcat = response['lista']
     })
+  }
+
+  async edit(idFicha,observacion){
+    
+    const alert = await this.alert.create({
+      header: 'Radio',
+      inputs: [
+        {
+          name: 'observacion',
+          type: 'text',
+          label: 'Observacion',
+          value: observacion,
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (form) => {
+            form['idFichaClinica'] = idFicha
+            if(form.observacion != null && form.observacion.length > 0){
+              this.service.editar(form).subscribe((response)=>{
+                this.getData()
+              })
+            }
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
   }
 
 }

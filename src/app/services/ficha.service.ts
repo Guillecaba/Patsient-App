@@ -55,4 +55,14 @@ export class FichaService {
     })
   }
 
+  editar(form){
+    let url = this.url_base + 'fichaClinica'
+    return this.http.put(url,form,{
+      headers:{
+        'Content-Type':'application/json',
+        usuario:'gustavo'
+      }
+    })
+  }
+
 }

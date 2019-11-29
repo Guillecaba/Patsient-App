@@ -60,10 +60,16 @@
     </ion-row>
 
     <ion-row>
-      <ion-button (click)="submit()" [disabled] = "!can_submit">
-        <ion-icon name="save"></ion-icon>
-        Registrar Ficha
-      </ion-button>
+      <ion-col>
+        <ion-button (click)="router.navigate(['/ficha'])" color="danger" size="small">
+          <ion-icon name="close"></ion-icon>
+          Cancelar
+        </ion-button>
+        <ion-button (click)="submit()" [disabled] = "!can_submit" size="small">
+          <ion-icon name="save"></ion-icon>
+          Registrar Ficha
+        </ion-button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
