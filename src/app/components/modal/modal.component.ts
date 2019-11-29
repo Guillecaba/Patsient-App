@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReservaService } from 'src/app/services/reserva.service';
+import { PopoverController, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal',
@@ -13,7 +14,7 @@ export class ModalComponent implements OnInit {
 
   obser;
   asist;
-  constructor(private router: Router, public reservaService: ReservaService) { }
+  constructor(private router: Router, public reservaService: ReservaService, public toastController: ToastController) { }
 
   ngOnInit() {
     this.asist = false;
@@ -26,7 +27,7 @@ export class ModalComponent implements OnInit {
     console.log(this.asist);
     // location.reload();
     let datos = '{"idReserva":';
-    datos = datos + this.reserva.idReserva + ',"observacion":"';
+    datos = datos + '"' + this.reserva.idReserva + '","observacion":"';
     datos = datos + this.obser + '","flagAsistio":"';
     if (this.asist) {
       datos = datos + 'S';
@@ -40,7 +41,18 @@ export class ModalComponent implements OnInit {
         console.log('Reservación modificada con éxito!');
         location.reload();
       }
+    }, (error) => {
+      console.log('ERROR en la eliminación: ' + error.error);
+      this.presentToast('ERROR en la eliminación: ' + error.error);
     });
+  }
+
+  async presentToast(mensaje) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 3500
+    });
+    toast.present();
   }
 
 
