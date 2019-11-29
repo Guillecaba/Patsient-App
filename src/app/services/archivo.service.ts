@@ -12,7 +12,7 @@ export class ArchivoService {
 
     postArchivo(archivo: any) {
         const URL = this.baseUrl + '/archivo';
-        return this.http.post(URL, archivo).toPromise().catch(this.handleError);
+        return this.http.post(URL, archivo);
     }
 
     getArchivos(idFicha?: string) {
