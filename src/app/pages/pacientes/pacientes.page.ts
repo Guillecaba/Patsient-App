@@ -28,6 +28,11 @@ export class PacientesPage implements OnInit {
     this.getData();
       
     }
+
+    ionViewDidEnter(){
+      this.pagination.inicio=0;
+      this.getData();
+    }
     getData(){
      
 
