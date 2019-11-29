@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PacienteService {
 
-  private  URL = "http://gy7228.myfoscam.org:8443/stock-pwfe/"
+  private  URL = "https://gy7228.myfoscam.org:8443/stock-pwfe/"
 
   constructor(public http: HttpClient) { }
 

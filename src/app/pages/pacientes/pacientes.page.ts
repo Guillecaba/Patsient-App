@@ -63,7 +63,9 @@ export class PacientesPage implements OnInit {
       this.pagination.inicio+=Number(this.pagination.cantidad);
       setTimeout(()=>{
         this.pacienteService.get({
-          ...this.pagination
+          ...this.pagination,
+          orderBy:this.orderBy,
+          orderDir:this.orderDir
          
         })
         .subscribe((response)=>{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { PacienteService } from 'src/app/services/paciente.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +14,7 @@ export class SearchPage implements OnInit {
   usuarioSistema
   busquedaExacta=false;
   like="S";
-  constructor(public pacienteService :PacienteService, public actionSheetController: ActionSheetController) { }
+  constructor(public pacienteService :PacienteService, public actionSheetController: ActionSheetController,public router:Router) { }
 
   ngOnInit() {
   }
@@ -82,19 +83,32 @@ export class SearchPage implements OnInit {
 
 
 
-  async presentActionSheet() {
+  async presentActionSheet(paciente) {
+    console.log(paciente)
     const actionSheet = await this.actionSheetController.create({
       /* header: 'Albums', */
       buttons: [{
         text: 'Ver detalle',
         icon: 'eye',
         handler: () => {
+          let navigationExtras: NavigationExtras = {
+            state: {
+              paciente: paciente
+            }
+          };
+          this.router.navigate(['/pacientes/detail-paciente'],navigationExtras)
           console.log('Ver clicked');
         }
       }, {
         text: 'Editar',
         icon: 'create',
         handler: () => {
+          let navigationExtras: NavigationExtras = {
+            state: {
+              paciente: paciente
+            }
+          };
+          this.router.navigate(['/pacientes/editor-paciente'],navigationExtras)
           console.log('Editar clicked');
         }
       },{
@@ -102,6 +116,10 @@ export class SearchPage implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
+          this.pacienteService.delete(paciente['idPersona']).subscribe(()=>{
+            
+          })
+         
           console.log('Delete clicked');
         }
       }, {
@@ -115,5 +133,4 @@ export class SearchPage implements OnInit {
     });
     await actionSheet.present();
   }
-
 }
