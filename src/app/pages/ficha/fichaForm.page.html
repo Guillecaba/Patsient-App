@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nueva Ficha Clínica</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row>
+
+      <ion-col size="8">
+        <ion-item>
+          <ion-label>Categoría</ion-label>
+          <ion-select [value]="id_cat"
+            (ionChange)="getSub($event.target.value)">            
+            <ion-select-option *ngFor="let cat of opciones.cat" [value]="cat.idCategoria">
+              {{ cat.descripcion }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="8">
+        <ion-item>
+          <ion-label>Tipo</ion-label>
+          <ion-select [value]="form.idTipoProducto.idTipoProducto"
+            (ionChange)="form.idTipoProducto.idTipoProducto = $event.target.value;can_next()">
+            <ion-select-option *ngFor="let sub of opciones.subcat" 
+              [value]="sub.idTipoProducto">
+              {{ sub.descripcion }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>      
+      <ion-item>
+        <ion-label position="stacked">Motivo</ion-label>
+        <ion-input type="text" [(ngModel)]="form.motivoConsulta"
+          (ionChange)="can_next()"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>      
+      <ion-item>
+        <ion-label position="stacked">Diagnostico</ion-label>
+        <ion-input type="text" [(ngModel)]="form.diagnostico"
+          (ionChange)="can_next()"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>      
+      <ion-item>
+        <ion-label position="stacked">Observación</ion-label>
+        <ion-input type="text" [(ngModel)]="form.observacion"
+          (ionChange)="can_next()"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-button (click)="submit()" [disabled] = "!can_submit">
+        <ion-icon name="save"></ion-icon>
+        Registrar Ficha
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

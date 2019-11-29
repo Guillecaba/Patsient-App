@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { FichaPageRoutingModule } from './ficha-routing.module';
 
 import { FichaPage } from './ficha.page';
-import { FichaFormPage } from './fichaForm.page';
 
 @NgModule({
   imports: [
@@ -16,9 +15,6 @@ import { FichaFormPage } from './fichaForm.page';
     IonicModule,
     FichaPageRoutingModule
   ],
-  declarations: [
-    FichaPage,
-    FichaFormPage
-  ]
+  declarations: [FichaPage]
 })
 export class FichaPageModule {}

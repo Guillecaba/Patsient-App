@@ -45,4 +45,14 @@ export class FichaService {
     return this.http.get(url)
   }
 
+  crear(form){
+    let url = this.url_base + 'fichaClinica'
+    return this.http.post(url,form,{
+      headers:{
+        'Content-Type':'application/json',
+        usuario:'gustavo'
+      }
+    })
+  }
+
 }
