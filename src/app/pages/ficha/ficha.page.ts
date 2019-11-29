@@ -15,9 +15,24 @@ export class FichaPage implements OnInit {
   desde:Date = null
   hasta:Date = null
 
-  hoy= new Date()
+  hoy:Date= new Date()
+  cat_id = null
+
+  opciones = {
+    'cat': [],
+    'subcat' : []
+  }
 
   filtros = {
+    idTipoProducto:{
+      idTipoProducto:null,
+    },
+    idCliente:{
+      idPersona:null
+    },
+    idEmpleado:{
+      idPersona:null
+    },
     fechaDesdeCadena:null,
     fechaHastaCadena:null,
   }
@@ -26,6 +41,9 @@ export class FichaPage implements OnInit {
 
   ngOnInit() {
     this.getData()
+    this.service.categorias().subscribe((response)=>{
+      this.opciones.cat = response['lista']
+    })
   }
 
   getData(){
@@ -38,6 +56,14 @@ export class FichaPage implements OnInit {
     let key_cap = 'fecha' + (key == 'desde' ? 'Desde' : 'Hasta') + 'Cadena'
     this.filtros[key_cap] = value.substring(0,10).replace('-','').replace('-','')
     this.getData()
+  }
+
+  getSub(value: Number){
+    console.log(value)
+    this.cat_id = value
+    this.service.subcategorias(value).subscribe((response)=>{
+      this.opciones.subcat = response['lista']
+    })
   }
 
 }
