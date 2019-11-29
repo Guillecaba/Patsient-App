@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { DatePipe } from '@angular/common';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +26,8 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
     HttpClientModule
   ],
   providers: [
+    AuthGuard,
+    AuthService,
     StatusBar,
     SplashScreen,
     DatePipe,

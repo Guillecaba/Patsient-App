@@ -1,0 +1,51 @@
+ion-menu {
+    ionic-header{
+        background-color: transparent !important;
+    }
+    ion-toolbar {
+        --background:  transparent;
+      }
+      
+    
+      
+    ion-content{
+        --background: none;
+        background-image: url('../assets/img/sidebar.svg');
+        
+        background-repeat: no-repeat;
+        background-size: cover;
+        ion-title {
+            margin-left:2em;    
+            font-size:2em;
+            position: relative;
+            top:5%;
+            color:var(--light, white);
+            font-weight: bold;
+
+        }
+        ion-list-header{ 
+            --background: var(--ion-color-primary) !important;
+           
+        }
+        ion-list{
+            position:relative;
+            top:10%;
+            background-color: transparent;
+        }
+        ion-item{
+            --background: transparent !important;
+             
+             ion-icon{ padding-right: 10px !important; }
+             ion-label {
+                --background: transparent !important;
+             }
+        }
+    }
+
+    
+    //--ion-background-image: url('../assets/img/background.svg');
+    
+    
+}
+
+

@@ -1,0 +1,35 @@
+ion-content {
+    --background: none;
+    background-image: url('../../../assets/img/sidebar.svg');
+        
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ion-menu {
+    ionic-header{
+        background-color: #40454F !important;
+        .toolbar-background{
+    
+}
+    }
+    ion-toolbar {
+        background-color:#40454F ;
+        
+        --background:  #40454F !important;
+        
+        .toolbar-background{
+            background-color:#40454F ;
+        }
+      }
+    }
+
+ion-card {
+    width:100%
+}
+
+ion-select {
+    min-width: 80% !important;
+    color:white;
+}
+
