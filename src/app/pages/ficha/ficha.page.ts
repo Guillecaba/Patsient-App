@@ -19,6 +19,8 @@ export class FichaPage implements OnInit {
   desde:Date = null
   hasta:Date = null
 
+  loading:boolean = false
+
   empleado_name:string = null
   paciente_name:string = null
 
@@ -59,8 +61,13 @@ export class FichaPage implements OnInit {
   }
 
   getData(){
+    this.loading = true
     this.service.listado(this.filtros).subscribe((response)=>{
       this.lista = response['lista']
+    },
+    null,
+    ()=>{
+      this.loading = false
     })
   }
 

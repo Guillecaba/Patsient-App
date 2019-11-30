@@ -18,11 +18,6 @@ export class AppComponent {
       icon: 'contact'
     },
     {
-      title: 'Ficha',
-      url: '/list',
-      icon: 'list'
-    },
-    {
       title: 'Reservas',
       url: '/reserva',
       icon: 'clipboard'
@@ -34,7 +29,7 @@ export class AppComponent {
     },{
       title: 'Ficha',
       url: '/ficha',
-      icon: 'list'
+      icon: 'filing'
     }
   ];
 
