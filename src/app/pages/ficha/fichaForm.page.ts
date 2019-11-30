@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
 import { Ficha } from 'src/app/models/ficha';
 import { Router } from '@angular/router';
+import { SearchPage } from './search/search.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ficha-form',
@@ -12,6 +14,9 @@ import { Router } from '@angular/router';
 export class FichaFormPage implements OnInit {
 
   lista: Ficha[] = []
+
+  paciente_name = ""
+  empleado_name = ""
 
   cat_id = null
   can_submit = false
@@ -26,10 +31,10 @@ export class FichaFormPage implements OnInit {
       idTipoProducto:null,
     },
     idCliente:{
-      idPersona:15
+      idPersona:null
     },
     idEmpleado:{
-      idPersona:3
+      idPersona:null
     },
     motivoConsulta:'',
     diagnostico:'',
@@ -37,6 +42,7 @@ export class FichaFormPage implements OnInit {
   }
 
   constructor(private service:FichaService,
+    private modalController:ModalController,
     private router:Router) { }
 
   ngOnInit() {
@@ -71,4 +77,29 @@ export class FichaFormPage implements OnInit {
     })
   }
 
+  async selectPersona(tipo){
+    let props = {tipo : tipo}
+    if(tipo == 'Paciente'){
+      props['callback'] = (id, name) => {
+        this.paciente_name = name
+        this.form.idCliente.idPersona = id
+        this.can_next()
+      }
+      props['prev'] = this.form.idCliente.idPersona
+    }
+    if(tipo == 'Empleado'){
+      props['callback'] = (id, name) => {
+        this.empleado_name = name
+        this.form.idEmpleado.idPersona = id
+        this.can_next()
+      }
+      props['prev'] = this.form.idEmpleado.idPersona
+    }
+
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      componentProps: props
+    });
+    return await modal.present();
+  }
 }

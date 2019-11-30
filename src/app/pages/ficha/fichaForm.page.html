@@ -9,7 +9,27 @@
 
     <ion-row>
 
-      <ion-col size="8">
+
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Paciente </ion-label>
+          {{ paciente_name}}
+          <ion-button (click)="selectPersona('Paciente')" >
+            <ion-icon name="search"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Empleado </ion-label>
+          {{ empleado_name}}
+          <ion-button (click)="selectPersona('Empleado')" >
+            <ion-icon name="search"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
         <ion-item>
           <ion-label>Categoría</ion-label>
           <ion-select [value]="id_cat"
@@ -20,10 +40,10 @@
           </ion-select>
         </ion-item>
       </ion-col>
-      <ion-col size="8">
+      <ion-col size="12">
         <ion-item>
           <ion-label>Tipo</ion-label>
-          <ion-select [value]="form.idTipoProducto.idTipoProducto"
+          <ion-select [value]="form.idTipoProducto.idTipoProducto" [disabled]="opciones.subcat.length == 0"
             (ionChange)="form.idTipoProducto.idTipoProducto = $event.target.value;can_next()">
             <ion-select-option *ngFor="let sub of opciones.subcat" 
               [value]="sub.idTipoProducto">

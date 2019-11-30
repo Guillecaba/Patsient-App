@@ -52,6 +52,7 @@ export class FichaPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getData()
     this.service.categorias().subscribe((response)=>{
       this.opciones.cat = response['lista']
     })
