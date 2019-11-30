@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>Pacientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header class="ion-text-center">
+          Detalle de Paciente
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+              <ion-row>
+                  <ion-col size="6">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">Nombre </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.nombre}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">Apellido </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.apellido}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">Telefono </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.telefono}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">RUC </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.ruc}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  <ion-col size="12">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">Correo electronico </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.email}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">Cedula </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.cedula}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">Tipo </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.tipoPersona}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  <ion-col size="">
+                      <ion-item lines="none">
+                          <ion-label  position="stacked">Nacimiento </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">{{paciente?.fechaNacimiento}}</ion-label>
+
+                          </ion-item>
+                  </ion-col>
+                  </ion-row>
+          </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

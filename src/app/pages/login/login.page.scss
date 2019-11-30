@@ -1,0 +1,58 @@
+
+ion-content {
+    --background: none;
+    background-image: url('../../../assets/img/background.svg');
+        
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.brand-title{
+    position:relative;
+    color:white;
+    position: relative;
+    top: 2em;
+    left: 0.8em;
+    font-size: 3em;
+}
+
+ion-list{
+    position:relative;
+    top:40%;
+    padding:0 2em;
+}
+
+.login-enter{
+    position:relative;
+    padding:0 2em;
+    
+    top:43%;
+
+    ion-label{
+        font-size:2em;
+        font-weight: bold;
+    }
+
+   
+}
+
+.login-invite{
+    position:absolute;
+    bottom:0;
+    width: 100%;
+
+    ion-label{
+        text-align: center;
+        font-size:1em;
+        font-weight: bold;
+        text-decoration: underline;
+        
+    }
+
+}
+
+
+
+
+

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Reservas</ion-title>
+  </ion-toolbar>
+  <ion-item>
+    <ion-label>Profesional</ion-label>
+    <ion-select [(ngModel)]="emple" placeholder="Elige un profesional" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="null">Cualquier Empleado</ion-select-option>
+      <ion-select-option *ngFor="let pro of empleados" value="{{pro.idPersona}}">{{pro.nombreCompleto}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Paciente</ion-label>
+    <ion-select [(ngModel)]="pacie" placeholder="Elige un paciente" okText="Aceptar" cancelText="Cancelar">
+      <ion-select-option value="null">Cualquier Paciente</ion-select-option>
+      <ion-select-option *ngFor="let pac of pacientes" value="{{pac.idPersona}}">{{pac.nombreCompleto}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Desde</ion-label>
+    <ion-datetime [(ngModel)]="fIni" displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY"
+      placeholder="Fecha de inicio" min="2018" max="2021"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Hasta</ion-label>
+    <ion-datetime [(ngModel)]="fFin" displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" placeholder="Fecha final"
+      min="2018" max="2021"></ion-datetime>
+  </ion-item>
+
+  <ion-button (click)="buscar()" expand="full" color="success">Buscar</ion-button>
+
+</ion-header>
+<ion-content>
+
+
+  <ion-card *ngFor="let reserva of reservas">
+    <ion-card-header>
+      <ion-card-title>{{reserva.idEmpleado.nombreCompleto}}</ion-card-title>
+      <ion-card-subtitle>Paciente: {{reserva.idCliente.nombreCompleto}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{reserva.fecha.substr(8,2)}} de {{mes[+reserva.fecha.substr(5,2) - 1]}} del {{reserva.fecha.substr(0,4)}} de
+      {{reserva.horaInicio.substr(0,5)}} a
+      {{reserva.horaFin.substr(0,5)}}
+      <ion-buttons>
+        <ion-button color="primary" (click)="modificar(reserva)">Modificar</ion-button>
+
+        <ion-button color="danger" (click)="eliminar(reserva)">Cancelar</ion-button>
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button (click)="crear()" color="success">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

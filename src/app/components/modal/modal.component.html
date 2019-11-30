@@ -1,0 +1,11 @@
+<ion-list>
+  <ion-list-header>Editar Reserva</ion-list-header>
+  <ion-item>
+    <ion-textarea [(ngModel)]="obser" placeholder="Observación"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-checkbox [(ngModel)]="asist" color="primary" slot="start"></ion-checkbox>
+    <ion-label>El paciente asistió</ion-label>
+  </ion-item>
+</ion-list>
+<ion-button (click)="guardar()" expand="block">Guardar</ion-button>

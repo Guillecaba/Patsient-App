@@ -10,7 +10,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-/* import { FileChooser } from '@ionic-native/file-chooser/ngx'; */
+import { DatePipe } from '@angular/common';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +26,12 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
+    AuthGuard,
+    AuthService,
     StatusBar,
     SplashScreen,
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-    /* FileChooser */
   ],
   bootstrap: [AppComponent]
 })
