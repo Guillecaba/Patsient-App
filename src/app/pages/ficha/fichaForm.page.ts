@@ -45,9 +45,10 @@ export class FichaFormPage implements OnInit {
     })
   }
 
-  getSub(value: Number){
-    console.log(value)
+  getSub(value: Number){    
     this.cat_id = value
+    this.form.idTipoProducto.idTipoProducto = 
+    this.can_next()
     this.service.subcategorias(value).subscribe((response)=>{
       this.opciones.subcat = response['lista']
     })

@@ -65,4 +65,24 @@ export class FichaService {
     })
   }
 
+  persona(like,solo){
+    let query = {}
+    let after = ""
+
+    if(like != null && like.length > 0){      
+      query['nombre'] = like
+      after = '&like=S'
+    }
+    if(solo){
+      query ['soloUsuariosDelSistema'] = true
+    }
+
+    let url:string = this.url_base + 
+      'persona?ejemplo=' + 
+      encodeURIComponent(JSON.stringify(query)) +
+      after
+
+    return this.http.get(url)
+  }
+
 }

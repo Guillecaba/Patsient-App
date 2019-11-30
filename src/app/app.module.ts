@@ -10,12 +10,17 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FichaService } from './services/ficha.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchPage } from './pages/ficha/search/search.page';
+import { SearchPageModule } from './pages/ficha/search/search.module';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+  entryComponents: [
+    SearchPage
+  ],
   imports: [
     BrowserModule,
+    SearchPageModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule

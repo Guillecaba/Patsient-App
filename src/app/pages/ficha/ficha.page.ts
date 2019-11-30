@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FichaService } from 'src/app/services/ficha.service';
 import { Ficha } from 'src/app/models/ficha';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { SearchPage } from './search/search.page';
+import { Persona } from 'src/app/models/persona';
 
 @Component({
   selector: 'app-ficha',
@@ -16,6 +18,9 @@ export class FichaPage implements OnInit {
 
   desde:Date = null
   hasta:Date = null
+
+  empleado_name:string = null
+  paciente_name:string = null
 
   hoy:Date= new Date()
   cat_id = null
@@ -42,11 +47,11 @@ export class FichaPage implements OnInit {
   constructor(
     private service:FichaService,
     private alert:AlertController,
+    private modalController:ModalController,
     private router:Router
   ) { }
 
   ngOnInit() {
-    this.getData()
     this.service.categorias().subscribe((response)=>{
       this.opciones.cat = response['lista']
     })
@@ -67,6 +72,7 @@ export class FichaPage implements OnInit {
   getSub(value: Number){
     console.log(value)
     this.cat_id = value
+    this.filtros.idTipoProducto.idTipoProducto = null
     this.service.subcategorias(value).subscribe((response)=>{
       this.opciones.subcat = response['lista']
     })
@@ -75,7 +81,7 @@ export class FichaPage implements OnInit {
   async edit(idFicha,observacion){
     
     const alert = await this.alert.create({
-      header: 'Radio',
+      header: 'Editar Observación',
       inputs: [
         {
           name: 'observacion',
@@ -110,4 +116,29 @@ export class FichaPage implements OnInit {
 
   }
 
+  async selectPersona(tipo){
+    let props = {tipo : tipo}
+    if(tipo == 'Paciente'){
+      props['callback'] = (id, name) => {
+        this.paciente_name = name
+        this.filtros.idCliente.idPersona = id
+        this.getData()
+      }
+      props['prev'] = this.filtros.idCliente.idPersona
+    }
+    if(tipo == 'Empleado'){
+      props['callback'] = (id, name) => {
+        this.empleado_name = name
+        this.filtros.idEmpleado.idPersona = id
+        this.getData()
+      }
+      props['prev'] = this.filtros.idEmpleado.idPersona
+    }
+
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      componentProps: props
+    });
+    return await modal.present();
+  }
 }
