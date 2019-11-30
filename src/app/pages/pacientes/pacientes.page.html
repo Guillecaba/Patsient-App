@@ -73,7 +73,7 @@
       <ion-col *ngFor="let paciente of pacientes" size="6" no padding>
         <ion-card (click)="presentActionSheet(paciente)" >
           <ion-card-header>
-              <ion-card-title>  {{ paciente.nombreCompleto | slice:0:10 }}</ion-card-title>
+              <ion-card-title class="ion-text-center">  {{ paciente.nombreCompleto | slice:0:10 }}</ion-card-title>
           
             
           </ion-card-header>

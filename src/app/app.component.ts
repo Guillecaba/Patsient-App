@@ -18,11 +18,6 @@ export class AppComponent {
       icon: 'contact'
     },
     {
-      title: 'Reserva',
-      url: '/home',
-      icon: 'bookmark'
-    },
-    {
       title: 'Ficha',
       url: '/list',
       icon: 'list'
