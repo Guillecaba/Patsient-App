@@ -1,6 +1,8 @@
 {
   "name": "patsientapp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "c47e2f21"
 }
