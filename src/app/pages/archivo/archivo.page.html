@@ -40,7 +40,7 @@
     <h1>{{cantArchivos === 0 ? 'No hay archivos ' : 'Lista de archivos'}}</h1>
   </ion-title>
   <ion-list>
-    <ion-item *ngFor="let archi of archis">
+    <ion-item *ngFor="let archi of archis" href="{{archi.urlImagen}}">
       {{archi.nombre}}
       <div class="item-note" slot="end">
         <ion-button color="danger" (click)="confirmarBorrar(archi.idFichaArchivo)">
