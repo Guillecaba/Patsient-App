@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ficha Clínica</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>Paciente </ion-label>
+            {{ paciente_name}}
+            <ion-button (click)="selectPersona('Paciente')" >
+              <ion-icon name="search"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>Empleado </ion-label>
+            {{ empleado_name}}
+            <ion-button (click)="selectPersona('Empleado')" >
+              <ion-icon name="search"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-col>   
+         
+        </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Desde </ion-label>
+          <ion-datetime displayFormat="D M YY" [max]="hoy.toISOString()"
+            [(ngModel)]="desde" (ionChange)="setFiltro('desde',$event.target.value)">
+          </ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+          <ion-item>
+            <ion-label>Hasta </ion-label>
+            <ion-datetime displayFormat="D M YY" [max]="hoy.toISOString()"
+              [(ngModel)]="hasta" (ionChange)="setFiltro('hasta',$event.target.value)">
+            </ion-datetime>
+          </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Categoría</ion-label>
+          <ion-select [value]="id_cat"
+            (ionChange)="getSub($event.target.value)">            
+            <ion-select-option *ngFor="let cat of opciones.cat" [value]="cat.idCategoria">
+              {{ cat.descripcion }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item *ngIf="opciones.subcat.length > 0">
+          <ion-label>Tipo</ion-label>
+          <ion-select [value]="filtros.idTipoProducto.idTipoProducto"
+            (ionChange)="filtros.idTipoProducto.idTipoProducto = $event.target.value;getData()">
+            <ion-select-option [value]="null">
+              <i>Todos</i>
+            </ion-select-option>
+            <ion-select-option *ngFor="let sub of opciones.subcat" 
+              [value]="sub.idTipoProducto">
+              {{ sub.descripcion }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6" offset="6">
+        <ion-button (click)="router.navigate(['/ficha/form'])">
+            <ion-icon name="add"></ion-icon> Nueva Ficha
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col *ngFor="let ficha of lista" size="10" offset="1">
+        <ion-card>
+          <ion-card-header>
+            <ion-row>
+              <ion-col class="ion-align-self-center">
+                <ion-icon class="icono" name="person"></ion-icon>
+                {{ ficha.idCliente.nombre + ', ' + ficha.idCliente.apellido}}
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
+          <ion-card-content class="fixline">
+            <ion-row>
+              <ion-col class="ion-align-self-center">
+                <ion-icon class="icono" name="alarm"></ion-icon>
+                  {{ ficha.fechaHora }}
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="ion-align-self-center">
+                <ion-icon class="icono" name="contact"></ion-icon>
+                {{ ficha.idEmpleado.nombre + ', ' + ficha.idEmpleado.apellido}}
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="ion-align-self-center">
+                  <ion-icon class="icono" name="pin"></ion-icon>
+                  {{ ficha.idLocal.nombre }}
+                </ion-col>
+              </ion-row>
+
+            <ion-row>
+              <ion-col class="ion-align-self-center">
+                <ion-icon class="icono" name="information-circle-outline"></ion-icon>
+                
+                  {{ ficha.observacion }}
+                
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col offset="6">
+                <ion-button (click)="edit(ficha.idFichaClinica,ficha.observacion)">
+                    <ion-icon name="create"></ion-icon> Editar
+                </ion-button>
+              </ion-col>              
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -44,6 +44,11 @@ const routes: Routes = [
     path: 'pacientes',
     loadChildren: () => import('./pages/pacientes/pacientes.module').then(m => m.PacientesPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'ficha',
+    loadChildren: () => import('./pages/ficha/ficha.module').then( m => m.FichaPageModule),
+    canActivate: [AuthGuard]
   }
 ];
 

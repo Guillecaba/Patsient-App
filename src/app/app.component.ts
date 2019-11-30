@@ -31,7 +31,11 @@ export class AppComponent {
       title: 'Añadir archivo',
       url: '/archivo',
       icon: 'image'
-    },
+    },{
+      title: 'Ficha',
+      url: '/ficha',
+      icon: 'list'
+    }
   ];
 
   constructor(
