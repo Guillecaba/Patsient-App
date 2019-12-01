@@ -134,9 +134,12 @@
 
             <ion-row>
               <ion-col offset="6">
-                <ion-button (click)="edit(ficha.idFichaClinica,ficha.observacion)">
-                    <ion-icon name="create"></ion-icon> Editar
+                <ion-button (click)="view(ficha)">
+                    <ion-icon name="eye"></ion-icon>
                 </ion-button>
+                <ion-button (click)="edit(ficha.idFichaClinica,ficha.observacion)">
+                    <ion-icon name="create"></ion-icon>
+                </ion-button>                
               </ion-col>              
             </ion-row>
           </ion-card-content>

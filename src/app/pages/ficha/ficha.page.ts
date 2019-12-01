@@ -86,6 +86,69 @@ export class FichaPage implements OnInit {
     })
   }
 
+  async view (ficha:Ficha){
+    const alert = await this.alert.create({
+      header: 'Ficha',
+      message: `
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-icon class="icono" name="person"></ion-icon>
+              ${ ficha.idCliente.apellido + ', ' + ficha.idCliente.nombre }
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-icon class="icono" name="contact"></ion-icon>
+              ${ ficha.idEmpleado.apellido + ', ' + ficha.idEmpleado.nombre }
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-icon class="icono" name="alarm"></ion-icon>
+              ${ ficha.fechaHora }
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-icon class="icono" name="pin"></ion-icon>
+              ${ ficha.idLocal.nombre }
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-icon class="icono" name="bookmarks"></ion-icon>
+              ${ ficha.motivoConsulta }
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-icon class="icono" name="paper"></ion-icon>
+              ${ ficha.diagnostico }
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-icon class="icono" name="information-circle-outline"></ion-icon>
+              ${ ficha.observacion  }
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      `,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+    
+  }
+
   async edit(idFicha,observacion){
     
     const alert = await this.alert.create({
