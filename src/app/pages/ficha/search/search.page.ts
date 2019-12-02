@@ -13,10 +13,11 @@ export class SearchPage implements OnInit {
   tipo:string = null
   value:Number = null
   opciones: Persona[] = []
-  public navParams = new NavParams()
+  //public navParams = new NavParams()
   public onUpdate:(id:Number,name:string)=> void = null
 
   constructor(private modalCtrl: ModalController,
+    private navParams: NavParams,
     private service:FichaService) { 
       this.tipo = this.navParams.get('tipo')
       this.value = this.navParams.get('prev')
@@ -45,9 +46,15 @@ export class SearchPage implements OnInit {
           name = persona.apellido + ', ' + persona.nombre
         }
       }
-      this.onUpdate(this.value,name)
+      this.modalCtrl.dismiss({
+        'value':this.value,
+        'name' : name,
+        'update' : true
+      })
     }
-    this.modalCtrl.dismiss()
+    this.modalCtrl.dismiss({
+      update:false
+    })
   }
 
 }
