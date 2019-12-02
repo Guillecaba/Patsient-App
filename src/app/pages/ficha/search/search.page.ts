@@ -13,18 +13,21 @@ export class SearchPage implements OnInit {
   tipo:string = null
   value:Number = null
   opciones: Persona[] = []
-  onUpdate:(id:Number,name:string)=> void = null
+  public navParams = new NavParams()
+  public onUpdate:(id:Number,name:string)=> void = null
 
   constructor(private modalCtrl: ModalController,
-    private service:FichaService,
-    private navParams: NavParams) { 
+    private service:FichaService) { 
       this.tipo = this.navParams.get('tipo')
       this.value = this.navParams.get('prev')
-      this.onUpdate = this.navParams.get('callback')
+      //this.onUpdate = this.navParams.get('callback')
+      
     }
 
   ngOnInit() {
     this.getPersonas(null)
+    console.log( this.navParams.get('callback'))
+    this.onUpdate = this.navParams.get('callback')
   }
   getPersonas(like){
     let tipo = this.tipo == "Empleado"
