@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Añadir Archivo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Seleccione la ficha</ion-label>
+    <ion-input type="text" [(ngModel)]="idFicha" (change)="actualizarLista()"></ion-input>
+    <ion-button (click)="actualizarLista()">
+      <ion-icon name="search"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>{{ archivo.nombre ?  'Archivo seleccionado' : 'Seleccione un archivo' }}</ion-label>
+    <div class="btn-group">
+      <ion-button (click)="abrirArchivo()" shape="round" [disabled]="idFicha === null || idFicha === ''">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" shape="round" (click)="quitarArchivo()" [disabled]="archivo.file === null">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
+  <ion-item>
+    <ion-label>{{ archivo.nombre ?  archivo.nombre : 'No hay archivo' }}</ion-label>
+    <input type="file" accept="*/*" id="fileSelect" [(ngModel)]="selectedFile" (change)="abrirArchivo2($event)">
+    <ion-button color="success" (click)="subirArchivo()"
+      [disabled]="(idFicha === null || idFicha === '') || archivo.file === null">
+      <ion-icon name="cloud-upload"></ion-icon>Subir
+    </ion-button>
+  </ion-item>
+  <ion-title>
+    <h1>{{cantArchivos === 0 ? 'No hay archivos ' : 'Lista de archivos'}}</h1>
+  </ion-title>
+  <ion-list>
+    <ion-item *ngFor="let archi of archis" href="{{archi.urlImagen}}">
+      {{archi.nombre}}
+      <div class="item-note" slot="end">
+        <ion-button color="danger" (click)="confirmarBorrar(archi.idFichaArchivo)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

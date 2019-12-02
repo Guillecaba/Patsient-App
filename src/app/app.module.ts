@@ -15,12 +15,18 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth.guard';
 
+import { FichaService } from './services/ficha.service';
+import { SearchPage } from './pages/ficha/search/search.page';
+import { SearchPageModule } from './pages/ficha/search/search.module';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+  entryComponents: [
+    SearchPage
+  ],
   imports: [
     BrowserModule,
+    SearchPageModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule
@@ -29,6 +35,7 @@ import { AuthGuard } from './services/auth.guard';
     AuthGuard,
     AuthService,
     StatusBar,
+    FichaService,
     SplashScreen,
     DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

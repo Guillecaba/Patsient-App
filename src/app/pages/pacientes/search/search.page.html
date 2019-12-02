@@ -26,12 +26,20 @@
       <ion-grid>
           <ion-row>
               <ion-col *ngFor="let paciente of pacientes" size="6" no padding>
-                <ion-card (click)="presentActionSheet()" >
-                  <ion-card-header>
-                    {{ paciente.nombreCompleto | slice:0:15 }}
+                <ion-card (click)="presentActionSheet(paciente)" >
+                    <ion-card-header>
+                        <ion-card-title class="ion-text-center"><span>  {{ paciente.nombreCompleto | slice:0:10 }}</span></ion-card-title>
                     
-                  </ion-card-header>
-                  <ion-card-content class="fixline"></ion-card-content>
+                      
+                    </ion-card-header>
+                    <ion-card-content class="fixline">
+                        <ion-item lines="none">
+                            <ion-icon slot="end" name="eye"></ion-icon>
+                            <ion-label slot="start" >
+                            {{ paciente.idPersona }}
+                            </ion-label>
+                          </ion-item>
+                    </ion-card-content>
                 </ion-card>
               </ion-col>
             </ion-row>

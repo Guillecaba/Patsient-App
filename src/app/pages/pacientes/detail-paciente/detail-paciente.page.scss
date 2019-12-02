@@ -1,0 +1,22 @@
+ion-content {
+    --background: none;
+    background-image: url('../../../../assets/img/sidebar.svg');
+        
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.detail-title{
+    font-size:2em;
+    font-weight: bold;
+    color: #40454F;
+
+}
+
+
+ion-card{
+    background-color:white;
+    margin:2em 2em;
+    box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}

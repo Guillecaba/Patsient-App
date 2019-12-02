@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">
+      Buscar {{ tipo == null ? 'Persona' : tipo }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+          <ion-item>
+            <ion-label>Persona </ion-label>
+            <ion-select [(ngModel)]="value">
+              <ion-select-option [value]="null">
+                Ninguno                
+              </ion-select-option>
+              <ion-select-option *ngFor="let p of opciones" 
+                [value]="p.idPersona">
+                {{ p.apellido + ', ' + p.nombre}}
+              </ion-select-option>
+            </ion-select>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="cerrar(false)" color="danger" size="small">
+          <ion-icon name="close"></ion-icon>
+          Cancelar
+        </ion-button>
+        <ion-button (click)="cerrar(true)" size="small">
+          <ion-icon name="save"></ion-icon>
+          Elegir
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

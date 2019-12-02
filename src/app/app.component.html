@@ -13,6 +13,14 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+              <ion-item lines="none" (click)="logout()">
+                <ion-icon slot="start" name="close"></ion-icon>
+                <ion-label color="light">
+                  Cerrar Sesión
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

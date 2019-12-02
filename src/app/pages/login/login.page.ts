@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
   login() {
     this.authService.login(this.username).subscribe(res => {
         const coincidencias = res['totalDatos'];
+        console.log(coincidencias)
         if (coincidencias > 0) {
             localStorage.setItem('logged', 'true');
             localStorage.setItem('currentUser', res['lista'][0].nombreCompleto);
