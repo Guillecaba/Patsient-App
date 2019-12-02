@@ -210,6 +210,11 @@ export class FichaPage implements OnInit {
       component: SearchPage,
       componentProps: props
     });
-    return await modal.present();
+
+    await modal.present();
+
+    let { data }  = await modal.onWillDismiss()
+
+    if(data['update'])props['callback'](data.value,data.name)
   }
 }
