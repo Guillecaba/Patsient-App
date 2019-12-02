@@ -190,6 +190,7 @@ export class FichaPage implements OnInit {
   async selectPersona(tipo){
     let props = {tipo : tipo}
     if(tipo == 'Paciente'){
+      console.log('Paciente');
       props['callback'] = (id, name) => {
         this.paciente_name = name
         this.filtros.idCliente.idPersona = id
@@ -198,6 +199,7 @@ export class FichaPage implements OnInit {
       props['prev'] = this.filtros.idCliente.idPersona
     }
     if(tipo == 'Empleado'){
+      console.log('Empleado');
       props['callback'] = (id, name) => {
         this.empleado_name = name
         this.filtros.idEmpleado.idPersona = id

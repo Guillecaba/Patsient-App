@@ -26,7 +26,7 @@ export class SearchPage implements OnInit {
 
   ngOnInit() {
     this.getPersonas(null)
-    console.log( this.navParams.get('callback'))
+    console.log(this.navParams.get('callback'))
     this.onUpdate = this.navParams.get('callback')
   }
   getPersonas(like){
@@ -43,7 +43,7 @@ export class SearchPage implements OnInit {
         let persona:Persona = this.opciones[i]
         if(persona.idPersona == this.value){
           name = persona.apellido + ', ' + persona.nombre
-        }        
+        }
       }
       this.onUpdate(this.value,name)
     }

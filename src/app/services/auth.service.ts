@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
 
-  URL = 'https://gy7228.myfoscam.org:8443/stock-pwfe/persona';
+  URL = 'http://gy7228.myfoscam.org:8080/stock-pwfe/persona';
 
   constructor(public http: HttpClient) { }
 

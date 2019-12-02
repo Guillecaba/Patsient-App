@@ -8,7 +8,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class PacienteService {
 
-  private  URL = "https://gy7228.myfoscam.org:8443/stock-pwfe/"
+  private  URL = "http://gy7228.myfoscam.org:8080/stock-pwfe/"
   constructor(public http: HttpClient) { }
 
 
