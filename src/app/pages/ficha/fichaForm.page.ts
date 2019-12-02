@@ -106,7 +106,7 @@ export class FichaFormPage implements OnInit {
 
     let { data }  = await modal.onWillDismiss()
 
-    props['callback'](data.value,data.name)
+    if(data['update'])props['callback'](data.value,data.name)
 
   }
 }
